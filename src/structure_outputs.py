@@ -12,7 +12,7 @@ class ReviewCategory(str, Enum):
 #限制大模型输出中必须包含的字段category
 class CategorizeReviewOutput(BaseModel):
     category: ReviewCategory = Field(
-        ..., 
+        ...,
         description="评论所属分类，基于预设规则标识其类型"
     )
 
@@ -24,10 +24,8 @@ class ReplyOutput(BaseModel):
     )
 
 class VerifyReplyOutput(BaseModel):
-    verifyResult: bool = Field(
-        ...,
-        description="检查回复是否满足要求，不满足让大模型重新写一个回复"
-    )
+    reason: str = Field(description="审核不通过原因")
+    is_rewrite: bool = Field(description="是否需要重写")
 
 # **RAG Query Output**
 class RAGQueriesOutput(BaseModel):

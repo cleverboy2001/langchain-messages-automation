@@ -1,16 +1,31 @@
-# This is a sample Python script.
+from colorama import Fore, Style
+from src.graph import Workflow
+from dotenv import load_dotenv
+from typing import List
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# Load all env variables
+load_dotenv()
+
+# config
+config = {'recursion_limit': 100}
+
+workflow = Workflow()
+app = workflow.app
+
+initial_state = {
+    "reviews": [],
+    "current_review": "",
+    "review_category": "",
+    "is_rewrite": False,
+    "review_reply": List[dict],
+    "generated_reply": "",
+    "trials": 0
+}
+
+# Run the automation
+print(Fore.GREEN + "开始自动回复评论..." + Style.RESET_ALL)
+for output in app.stream(initial_state, config):
+    for key, value in output.items():
+        print(Fore.CYAN + f"{key}节点运行结束" + Style.RESET_ALL)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -19,6 +19,7 @@ initial_state = {
     "is_rewrite": False,
     "review_reply": List[dict],
     "generated_reply": "",
+    "is_end": bool,
     "trials": 0
 }
 

@@ -11,3 +11,4 @@ class GraphState(TypedDict):
     review_reply: List[dict]
     #迭代次数
     trials: int
+    is_end: bool
